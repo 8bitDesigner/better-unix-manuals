@@ -8,7 +8,9 @@
       "css": [ "css/index.css" ],
       "matches": [
         "https://www.gnu.org/software/*/manual/html_node/*.html",
-        "http://tldp.org/LDP/*/html/*.html"
+        "http://tldp.org/LDP/*/html/*.html",
+        "https://www.gnupg.org/howtos/*/*.html",
+        "https://www.gnupg.org/gph/*/*.html"
       ]
     }
   ]
