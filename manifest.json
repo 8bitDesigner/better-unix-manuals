@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "better-gnu-styles",
+  "description": "Basic styling for the GNU software manuals",
+  "version": "1",
+  "content_scripts": [
+    {
+      "css": [ "css/index.css" ],
+      "matches": [
+        "https://www.gnu.org/software/*/manual/html_node/*.html",
+        "http://tldp.org/LDP/*/html/*.html"
+      ]
+    }
+  ]
+}
