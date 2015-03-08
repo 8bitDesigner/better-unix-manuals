@@ -5,3 +5,11 @@ body {
   max-width: 800px;
   margin: 0 auto;
 }
+
+/* code blocks */
+.programlisting {
+  padding: 20px;
+  font-size: 14px;
+  background: rgba(0,0,0,0.05);
+  font-family: Menlo, Monaco, "Courier New", Courier, monospace;
+}
