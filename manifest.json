@@ -15,6 +15,7 @@
         "css/index.css"
       ],
       "matches": [
+        "https://www.gnu.org/software/*/manual/*.html",
         "https://www.gnu.org/software/*/manual/html_node/*.html",
         "http://tldp.org/LDP/*/html/*.html",
         "https://www.gnupg.org/howtos/*/*.html",

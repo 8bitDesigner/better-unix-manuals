@@ -11,7 +11,7 @@ table {
   background-color: transparent !important;
 }
 
-.programlisting {
+pre.example, .programlisting {
   padding: 20px;
   font-size: 14px;
   background: rgba(0,0,0,0.05);
