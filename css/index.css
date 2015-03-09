@@ -6,10 +6,11 @@ body {
   margin: 0 auto;
 }
 
-/* code blocks */
-div.variablelist table, div.example table {
+/* TLDP code blocks */
+table {
   background-color: transparent !important;
 }
+
 .programlisting {
   padding: 20px;
   font-size: 14px;
