@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "better-gnu-styles",
+  "name": "better-unix-manuals",
   "description": "Basic styling for the GNU software manuals",
   "version": "1",
   "content_scripts": [
@@ -15,11 +15,11 @@
         "css/index.css"
       ],
       "matches": [
-        "https://www.gnu.org/software/*/manual/*.html",
-        "https://www.gnu.org/software/*/manual/html_node/*.html",
-        "http://tldp.org/LDP/*/html/*.html",
-        "https://www.gnupg.org/howtos/*/*.html",
-        "https://www.gnupg.org/gph/*/*.html"
+        "*://www.gnu.org/software/*/manual/*.html",
+        "*://www.gnu.org/software/*/manual/html_node/*.html",
+        "*://tldp.org/LDP/*/html/*.html",
+        "*://www.gnupg.org/howtos/*/*.html",
+        "*://www.gnupg.org/gph/*/*.html"
       ]
     }
   ]
