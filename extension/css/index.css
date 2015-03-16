@@ -17,3 +17,6 @@ pre.example, .programlisting {
   background: rgba(0,0,0,0.05);
   font-family: Menlo, Monaco, "Courier New", Courier, monospace;
 }
+pre.menu-comment {	
+  font-family: sans-serif;
+}
