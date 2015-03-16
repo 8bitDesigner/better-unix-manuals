@@ -1,0 +1,31 @@
+{
+  "name": "better-unix-manuals",
+  "version": "1.0.0",
+  "description": "This Chrome extension applies a basic stylesheet to manual pages on the  [Linux Documentation Project](http://tldp.org/) and [GNU's manual pages](https://www.gnu.org/)",
+  "main": "index.js",
+  "bin": {
+    "better-unix-manuals": "verison.js"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/8bitDesigner/better-unix-manuals.git"
+  },
+  "author": "Paul Sweeney <paul@8-bitdesign.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/8bitDesigner/better-unix-manuals/issues"
+  },
+  "homepage": "https://github.com/8bitDesigner/better-unix-manuals",
+  "dependencies": {
+    "dotenv": "^1.0.0",
+    "node-github": "0.0.3",
+    "request": "^2.53.0",
+    "semver": "^4.3.1"
+  }
+}

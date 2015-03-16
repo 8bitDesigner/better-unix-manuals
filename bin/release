@@ -1,0 +1,67 @@
+#!/usr/bin/env node
+require('dotenv').load();
+
+var fs = require('fs')
+  , path = require('path')
+  , url = require('url')
+  , request = require('request')
+  , pkg = require(path.join(process.cwd(), 'package.json'))
+
+function handle(err) {
+  if (!err) { return }
+  console.error(JSON.stringify(err, null, 2))
+  process.exit(1)
+}
+
+function userPath() {
+  var repo = pkg.repository.url
+    , parsed = url.parse(pkg.repository.url).pathname
+  return parsed.replace(/^\//, '').replace('.git', '')
+}
+
+function ghReq(options, cb) {
+  options.json = true
+  options.headers = {
+    "User-Agent": pkg.name + ' release script',
+    "Authorization": "token "+process.env.GHTOKEN
+  }
+
+  request(options, function(err, body, json) {
+    if (err)              { cb(err, null)  }
+    else if (json.errors) { cb(json, null) }
+    else                  { cb(null, json) }
+  })
+}
+
+function createRelease(version, cb) { 
+  var tag = 'v'+version
+  ghReq({
+    method: "POST",
+    url: "https://api.github.com/repos/"+userPath()+"/releases",
+    body: {
+      tag_name: tag,
+      name: tag,
+      body: tag
+    }
+  }, cb)
+}
+
+function appendFile(release, file, cb) {
+  ghReq({
+    method: "POST",
+    url: release.upload_url.replace('{?name}', ''),
+    qs: {
+      name: release.tag_name +'-'+ path.basename(file),
+      "Content-Type": "application/x-chrome-extension"
+    },
+    body: fs.readFileSync(path.join(process.cwd(), file))
+  }, cb)
+}
+
+createRelease(process.argv[2], function(err, release) {
+  handle(err)
+  appendFile(release, process.argv[3], function(err, response) {
+    handle(err)
+    console.log("Release "+release.tag_name+" created.")
+  })
+})
