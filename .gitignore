@@ -1,5 +1,5 @@
 .env
-extension.crx
-extension.pem
+*.crx
+*.pem
 node_modules/
 

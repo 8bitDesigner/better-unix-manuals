@@ -1,11 +1,11 @@
 PATH     := ./bin:node_modules/.bin:$(PATH)
 chrome   := /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 extpath  := ./extension
-extfile  := extension.crx
+extfile  := build.crx
 manifest := $(extpath)/manifest.json
 
 $(extfile): extension.pem
-	$(chrome) --pack-extension=$(extpath) --pack-extension-key=$<
+  crx pack $(extpath) -o $(extfile) -p extension.pem
 
 release: $(extfile) $(manifest)
 	release `version $(manifest) minor` $(extfile)

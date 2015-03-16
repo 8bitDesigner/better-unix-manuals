@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/8bitDesigner/better-unix-manuals",
   "dependencies": {
+    "crx": "^3.0.2",
     "dotenv": "^1.0.0",
     "node-github": "0.0.3",
     "request": "^2.53.0",

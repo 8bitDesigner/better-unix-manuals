@@ -20,45 +20,45 @@ function userPath() {
 }
 
 function ghReq(options, cb) {
-  options.json = true
-  options.headers = {
-    "User-Agent": pkg.name + ' release script',
-    "Authorization": "token "+process.env.GHTOKEN
-  }
+  options.headers = options.headers || {}
+  options.headers["User-Agent"] = pkg.name + ' release script'
+  options.headers["Authorization"] = "token "+process.env.GHTOKEN
 
   request(options, function(err, body, json) {
-    if (err)              { cb(err, null)  }
-    else if (json.errors) { cb(json, null) }
-    else                  { cb(null, json) }
+    if (err)               { cb(err, null)  }
+    else if (json.message) { cb(json, null) }
+    else                   { cb(null, json) }
   })
 }
 
-function createRelease(version, cb) { 
-  var tag = 'v'+version
+function createRelease(tagName, cb) {
   ghReq({
     method: "POST",
+    json: true,
     url: "https://api.github.com/repos/"+userPath()+"/releases",
     body: {
-      tag_name: tag,
-      name: tag,
-      body: tag
+      tag_name: tagName,
+      name: tagName,
+      body: tagName
     }
   }, cb)
 }
 
 function appendFile(release, file, cb) {
+  console.log('Uploading: '+path.join(process.cwd(), file))
   ghReq({
     method: "POST",
     url: release.upload_url.replace('{?name}', ''),
-    qs: {
-      name: release.tag_name +'-'+ path.basename(file),
-      "Content-Type": "application/x-chrome-extension"
-    },
-    body: fs.readFileSync(path.join(process.cwd(), file))
+    body: fs.readFileSync(path.join(process.cwd(), file)),
+    headers: { "Content-Type": "application/zip" },
+    qs: { name: release.tag_name +'-'+ pkg.name }
   }, cb)
 }
 
-createRelease(process.argv[2], function(err, release) {
+var tagName = process.argv[2]
+if (tagName[0] !== 'v') tagName = 'v'+tagName
+
+createRelease(tagName, function(err, release) {
   handle(err)
   appendFile(release, process.argv[3], function(err, response) {
     handle(err)

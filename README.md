@@ -9,7 +9,10 @@ Into this:
 ![](./docs/post-plugin.png)
 
 ## Installation
-1. Clone this repo
-2. Go to [chrome://extensions](chrome://extensions)
-3. Click "Load Unpacked Extension" and select the cloned repo
-4. Done!
+1. Download the `*.crx` file from the [latest release](https://github.com/8bitDesigner/better-unix-manuals/releases)
+2. Open [chrome://extensions](chrome://extensions)
+3. Drag the `*.crx` file you just downloaded onto the page.
+
+
+
+
