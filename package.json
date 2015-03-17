@@ -1,6 +1,6 @@
 {
   "name": "better-unix-manuals",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This Chrome extension applies a basic stylesheet to manual pages on the  [Linux Documentation Project](http://tldp.org/) and [GNU's manual pages](https://www.gnu.org/)",
   "main": "index.js",
   "bin": {
