@@ -3,13 +3,19 @@
 var semver = require('semver')
   , fs = require('fs')
   , path = require('path')
+  , pkgPath = path.join(process.cwd(), 'package.json')
+  , version = require(pkgPath).version
 
-function updateJson(filename, type) {
+function updateJson(filename) {
   file = require(filename)
-  file.version = semver(file.version).inc(type).toString()
+  file.version = version
   fs.writeFileSync(filename, JSON.stringify(file, null, 2))
-  console.log(file.version)
 }
 
-updateJson(path.join(process.cwd(), process.argv[2]), process.argv[3])
+if (process.argv[3]) {
+  version = semver.inc(version, process.argv[3])
+  updateJson(pkgPath)
+  updateJson(path.join(process.cwd(), process.argv[2]))
+}
 
+console.log(version)

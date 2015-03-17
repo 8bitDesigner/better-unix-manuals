@@ -51,7 +51,7 @@ function appendFile(release, file, cb) {
     url: release.upload_url.replace('{?name}', ''),
     body: fs.readFileSync(path.join(process.cwd(), file)),
     headers: { "Content-Type": "application/zip" },
-    qs: { name: release.tag_name +'-'+ pkg.name }
+    qs: { name: release.tag_name +'-'+ pkg.name + path.extname(file)}
   }, cb)
 }
 
